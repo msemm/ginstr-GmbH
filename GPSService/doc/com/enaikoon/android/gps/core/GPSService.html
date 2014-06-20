@@ -40,7 +40,7 @@
 <li>Next Class</li>
 </ul>
 <ul class="navList">
-<li><a href="../../../../../index.html?com/enaikoon/android/gps/core/GPSService.html" target="_top">Frames</a></li>
+<li><a href="../../../../../index.html?com/ginstr/android/gps/core/GPSService.html" target="_top">Frames</a></li>
 <li><a href="GPSService.html" target="_top">No Frames</a></li>
 </ul>
 <ul class="navList" id="allclasses_navbar_top">
@@ -79,7 +79,7 @@
 <!-- ========= END OF TOP NAVBAR ========= -->
 <!-- ======== START OF CLASS DATA ======== -->
 <div class="header">
-<div class="subTitle">com.enaikoon.android.gps.core</div>
+<div class="subTitle">com.ginstr.android.gps.core</div>
 <h2 title="Class GPSService" class="title">Class GPSService</h2>
 </div>
 <div class="contentContainer">
@@ -87,10 +87,10 @@
 <li>java.lang.Object</li>
 <li>
 <ul class="inheritance">
-<li>com.enaikoon.android.service.baseservice.BaseService</li>
+<li>com.ginstr.android.service.baseservice.BaseService</li>
 <li>
 <ul class="inheritance">
-<li>com.enaikoon.android.gps.core.GPSService</li>
+<li>com.ginstr.android.gps.core.GPSService</li>
 </ul>
 </li>
 </ul>
@@ -101,12 +101,12 @@
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd>com.enaikoon.android.service.baseservice.ActivityNewIntentListener, com.enaikoon.android.service.baseservice.ActivityOnPauseListener, com.enaikoon.android.service.baseservice.ActivityOnResumeListener, com.enaikoon.android.service.baseservice.ActivityResultListener</dd>
+<dd>com.ginstr.android.service.baseservice.ActivityNewIntentListener, com.ginstr.android.service.baseservice.ActivityOnPauseListener, com.ginstr.android.service.baseservice.ActivityOnResumeListener, com.ginstr.android.service.baseservice.ActivityResultListener</dd>
 </dl>
 <hr>
 <br>
 <pre>public class <span class="strong">GPSService</span>
-extends com.enaikoon.android.service.baseservice.BaseService</pre>
+extends com.ginstr.android.service.baseservice.BaseService</pre>
 <div class="block">Provides GPS data and listeners. 
  <p>This class provides access to the system GPS location services.</p>
  <p>
@@ -115,7 +115,7 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
  </p>
  
  If you need are callback to be invoked when location is changed, you need
- call <a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#setOnLocationChanged(com.enaikoon.android.gps.core.interfaces.LocationChanged)"><code>setOnLocationChanged(LocationChanged)</code></a> with param your listener.<br/>
+ call <a href="../../../../../com/ginstr/android/gps/core/GPSService.html#setOnLocationChanged(com.ginstr.android.gps.core.interfaces.LocationChanged)"><code>setOnLocationChanged(LocationChanged)</code></a> with param your listener.<br/>
  Example:
  
  <pre>
@@ -129,7 +129,7 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
  </pre>
  
  If you need are callback to be invoked when status is changed, you need call
- <a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#setOnStatusChanged(com.enaikoon.android.gps.core.interfaces.GPSStatusChanged)"><code>setOnStatusChanged(GPSStatusChanged)</code></a> with param your listener.<br/>
+ <a href="../../../../../com/ginstr/android/gps/core/GPSService.html#setOnStatusChanged(com.ginstr.android.gps.core.interfaces.GPSStatusChanged)"><code>setOnStatusChanged(GPSStatusChanged)</code></a> with param your listener.<br/>
  Example:
  
  <pre>
@@ -144,7 +144,7 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
  </pre>
  
  If you need are callback to be invoked when GPS provider is changed, you need
- call <a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#setProviderListener(com.enaikoon.android.gps.core.interfaces.GPSProvider)"><code>setProviderListener(GPSProvider)</code></a> with param your listener.<br/>
+ call <a href="../../../../../com/ginstr/android/gps/core/GPSService.html#setProviderListener(com.ginstr.android.gps.core.interfaces.GPSProvider)"><code>setProviderListener(GPSProvider)</code></a> with param your listener.<br/>
  Example:
  
  <pre>
@@ -162,7 +162,7 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
  </pre>
  
  If you want to receive only filtered location data, you should call 
- <a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#setOnValidLocationChanged(com.enaikoon.android.gps.core.interfaces.ValidLocationChanged)"><code>setOnValidLocationChanged(ValidLocationChanged)</code></a> with a implementation
+ <a href="../../../../../com/ginstr/android/gps/core/GPSService.html#setOnValidLocationChanged(com.ginstr.android.gps.core.interfaces.ValidLocationChanged)"><code>setOnValidLocationChanged(ValidLocationChanged)</code></a> with a implementation
  of your listener. <br/>
  
  <pre>
@@ -175,7 +175,7 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
  </code>
  </pre></div>
 <dl><dt><span class="strong">Author:</span></dt>
-  <dd>enaikoon</dd></dl>
+  <dd>ginstr</dd></dl>
 </li>
 </ul>
 </div>
@@ -194,7 +194,7 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
 <th class="colOne" scope="col">Constructor and Description</th>
 </tr>
 <tr class="altColor">
-<td class="colOne"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#GPSService(Context)">GPSService</a></strong>(Context&nbsp;context)</code>
+<td class="colOne"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#GPSService(Context)">GPSService</a></strong>(Context&nbsp;context)</code>
 <div class="block">Initialize LocationManager in the current context.</div>
 </td>
 </tr>
@@ -215,97 +215,97 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#addGpsStatusListener(GpsStatus.Listener)">addGpsStatusListener</a></strong>(GpsStatus.Listener&nbsp;listener)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#addGpsStatusListener(GpsStatus.Listener)">addGpsStatusListener</a></strong>(GpsStatus.Listener&nbsp;listener)</code>
 <div class="block">Adds a GPS status listener.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#addNmeaListener(GpsStatus.NmeaListener)">addNmeaListener</a></strong>(GpsStatus.NmeaListener&nbsp;listener)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#addNmeaListener(GpsStatus.NmeaListener)">addNmeaListener</a></strong>(GpsStatus.NmeaListener&nbsp;listener)</code>
 <div class="block">Adds an NMEA listener.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>java.util.List&lt;GpsSatellite&gt;</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#getGpsSatellite(GpsStatus)">getGpsSatellite</a></strong>(GpsStatus&nbsp;gpsStatus)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#getGpsSatellite(GpsStatus)">getGpsSatellite</a></strong>(GpsStatus&nbsp;gpsStatus)</code>
 <div class="block">Get list of all satellites by GPS status.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>GpsStatus</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#getGPSStatus(GpsStatus)">getGPSStatus</a></strong>(GpsStatus&nbsp;status)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#getGPSStatus(GpsStatus)">getGPSStatus</a></strong>(GpsStatus&nbsp;status)</code>
 <div class="block">Retrieves information about the current status of the GPS engine.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#getInUseSatellite(java.util.List)">getInUseSatellite</a></strong>(java.util.List&lt;GpsSatellite&gt;&nbsp;satellites)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#getInUseSatellite(java.util.List)">getInUseSatellite</a></strong>(java.util.List&lt;GpsSatellite&gt;&nbsp;satellites)</code>
 <div class="block">Get count uses satellites.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>int</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#getInViewSatellite(java.util.List)">getInViewSatellite</a></strong>(java.util.List&lt;GpsSatellite&gt;&nbsp;satellites)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#getInViewSatellite(java.util.List)">getInViewSatellite</a></strong>(java.util.List&lt;GpsSatellite&gt;&nbsp;satellites)</code>
 <div class="block">Get count view satellites.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#onServiceStart()">onServiceStart</a></strong>()</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#onServiceStart()">onServiceStart</a></strong>()</code>
 <div class="block">It will start requesting for GPS location updates.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#onServiceStop()">onServiceStop</a></strong>()</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#onServiceStop()">onServiceStop</a></strong>()</code>
 <div class="block">Stops requesting for GPS location updates.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#removeGpsStatusListener(GpsStatus.Listener)">removeGpsStatusListener</a></strong>(GpsStatus.Listener&nbsp;listener)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#removeGpsStatusListener(GpsStatus.Listener)">removeGpsStatusListener</a></strong>(GpsStatus.Listener&nbsp;listener)</code>
 <div class="block">Removes a GPS status listener.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#removeNmeaListener(GpsStatus.NmeaListener)">removeNmeaListener</a></strong>(GpsStatus.NmeaListener&nbsp;listener)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#removeNmeaListener(GpsStatus.NmeaListener)">removeNmeaListener</a></strong>(GpsStatus.NmeaListener&nbsp;listener)</code>
 <div class="block">Removes a NMEA listener.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#setOnLocationChanged(com.enaikoon.android.gps.core.interfaces.LocationChanged)">setOnLocationChanged</a></strong>(<a href="../../../../../com/enaikoon/android/gps/core/interfaces/LocationChanged.html" title="interface in com.enaikoon.android.gps.core.interfaces">LocationChanged</a>&nbsp;listener)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#setOnLocationChanged(com.ginstr.android.gps.core.interfaces.LocationChanged)">setOnLocationChanged</a></strong>(<a href="../../../../../com/ginstr/android/gps/core/interfaces/LocationChanged.html" title="interface in com.ginstr.android.gps.core.interfaces">LocationChanged</a>&nbsp;listener)</code>
 <div class="block">Register a callback to be invoked when location is changed.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#setOnStatusChanged(com.enaikoon.android.gps.core.interfaces.GPSStatusChanged)">setOnStatusChanged</a></strong>(<a href="../../../../../com/enaikoon/android/gps/core/interfaces/GPSStatusChanged.html" title="interface in com.enaikoon.android.gps.core.interfaces">GPSStatusChanged</a>&nbsp;listener)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#setOnStatusChanged(com.ginstr.android.gps.core.interfaces.GPSStatusChanged)">setOnStatusChanged</a></strong>(<a href="../../../../../com/ginstr/android/gps/core/interfaces/GPSStatusChanged.html" title="interface in com.ginstr.android.gps.core.interfaces">GPSStatusChanged</a>&nbsp;listener)</code>
 <div class="block">Register a callback to be invoked when GPS status changed.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#setOnValidLocationChanged(com.enaikoon.android.gps.core.interfaces.ValidLocationChanged)">setOnValidLocationChanged</a></strong>(<a href="../../../../../com/enaikoon/android/gps/core/interfaces/ValidLocationChanged.html" title="interface in com.enaikoon.android.gps.core.interfaces">ValidLocationChanged</a>&nbsp;listener)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#setOnValidLocationChanged(com.ginstr.android.gps.core.interfaces.ValidLocationChanged)">setOnValidLocationChanged</a></strong>(<a href="../../../../../com/ginstr/android/gps/core/interfaces/ValidLocationChanged.html" title="interface in com.ginstr.android.gps.core.interfaces">ValidLocationChanged</a>&nbsp;listener)</code>
 <div class="block">Register a callback to be invoked when a new valid location is received.</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#setProviderListener(com.enaikoon.android.gps.core.interfaces.GPSProvider)">setProviderListener</a></strong>(<a href="../../../../../com/enaikoon/android/gps/core/interfaces/GPSProvider.html" title="interface in com.enaikoon.android.gps.core.interfaces">GPSProvider</a>&nbsp;listener)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#setProviderListener(com.ginstr.android.gps.core.interfaces.GPSProvider)">setProviderListener</a></strong>(<a href="../../../../../com/ginstr/android/gps/core/interfaces/GPSProvider.html" title="interface in com.ginstr.android.gps.core.interfaces">GPSProvider</a>&nbsp;listener)</code>
 <div class="block">Register a callback to be invoked when GPS provider is changed.</div>
 </td>
 </tr>
 <tr class="altColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#setStrictCheck(boolean)">setStrictCheck</a></strong>(boolean&nbsp;strict)</code>
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#setStrictCheck(boolean)">setStrictCheck</a></strong>(boolean&nbsp;strict)</code>
 <div class="block">Toggles strict checking</div>
 </td>
 </tr>
 <tr class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
-<td class="colLast"><code><strong><a href="../../../../../com/enaikoon/android/gps/core/GPSService.html#validateGPSData(Location, Location, int, double, double, boolean)">validateGPSData</a></strong>(Location&nbsp;lastValidLocation,
+<td class="colLast"><code><strong><a href="../../../../../com/ginstr/android/gps/core/GPSService.html#validateGPSData(Location, Location, int, double, double, boolean)">validateGPSData</a></strong>(Location&nbsp;lastValidLocation,
                Location&nbsp;newLocation,
                int&nbsp;fix,
                double&nbsp;HDOP,
@@ -316,10 +316,10 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
 </tr>
 </table>
 <ul class="blockList">
-<li class="blockList"><a name="methods_inherited_from_class_com.enaikoon.android.service.baseservice.BaseService">
+<li class="blockList"><a name="methods_inherited_from_class_com.ginstr.android.service.baseservice.BaseService">
 <!--   -->
 </a>
-<h3>Methods inherited from class&nbsp;com.enaikoon.android.service.baseservice.BaseService</h3>
+<h3>Methods inherited from class&nbsp;com.ginstr.android.service.baseservice.BaseService</h3>
 <code>addLogEventListener, addServiceNewIntentListener, addServiceOnPauseListener, addServiceOnResumeListener, addServiceResultListener, addServiceStartListener, addServiceStopListener, generateLog, generateLog, generateResult, getActivity, getContext, getDrawable, getLogTag, getService, getString, isStarted, onActivityResultReceived, onNewIntentReceived, onPauseReceived, onResumeReceived, setLogTag, startService, stopService, syncResources</code></li>
 </ul>
 <ul class="blockList">
@@ -362,50 +362,50 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="setOnLocationChanged(com.enaikoon.android.gps.core.interfaces.LocationChanged)">
+<a name="setOnLocationChanged(com.ginstr.android.gps.core.interfaces.LocationChanged)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setOnLocationChanged</h4>
-<pre>public&nbsp;void&nbsp;setOnLocationChanged(<a href="../../../../../com/enaikoon/android/gps/core/interfaces/LocationChanged.html" title="interface in com.enaikoon.android.gps.core.interfaces">LocationChanged</a>&nbsp;listener)</pre>
+<pre>public&nbsp;void&nbsp;setOnLocationChanged(<a href="../../../../../com/ginstr/android/gps/core/interfaces/LocationChanged.html" title="interface in com.ginstr.android.gps.core.interfaces">LocationChanged</a>&nbsp;listener)</pre>
 <div class="block">Register a callback to be invoked when location is changed.</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>listener</code> - location change listener.</dd></dl>
 </li>
 </ul>
-<a name="setOnValidLocationChanged(com.enaikoon.android.gps.core.interfaces.ValidLocationChanged)">
+<a name="setOnValidLocationChanged(com.ginstr.android.gps.core.interfaces.ValidLocationChanged)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setOnValidLocationChanged</h4>
-<pre>public&nbsp;void&nbsp;setOnValidLocationChanged(<a href="../../../../../com/enaikoon/android/gps/core/interfaces/ValidLocationChanged.html" title="interface in com.enaikoon.android.gps.core.interfaces">ValidLocationChanged</a>&nbsp;listener)</pre>
+<pre>public&nbsp;void&nbsp;setOnValidLocationChanged(<a href="../../../../../com/ginstr/android/gps/core/interfaces/ValidLocationChanged.html" title="interface in com.ginstr.android.gps.core.interfaces">ValidLocationChanged</a>&nbsp;listener)</pre>
 <div class="block">Register a callback to be invoked when a new valid location is received.
  <p>A new location is validated against the previous valid
  location found, and the event is launched only if the new location is valid</div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>listener</code> - the listener.</dd></dl>
 </li>
 </ul>
-<a name="setOnStatusChanged(com.enaikoon.android.gps.core.interfaces.GPSStatusChanged)">
+<a name="setOnStatusChanged(com.ginstr.android.gps.core.interfaces.GPSStatusChanged)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setOnStatusChanged</h4>
-<pre>public&nbsp;void&nbsp;setOnStatusChanged(<a href="../../../../../com/enaikoon/android/gps/core/interfaces/GPSStatusChanged.html" title="interface in com.enaikoon.android.gps.core.interfaces">GPSStatusChanged</a>&nbsp;listener)</pre>
+<pre>public&nbsp;void&nbsp;setOnStatusChanged(<a href="../../../../../com/ginstr/android/gps/core/interfaces/GPSStatusChanged.html" title="interface in com.ginstr.android.gps.core.interfaces">GPSStatusChanged</a>&nbsp;listener)</pre>
 <div class="block">Register a callback to be invoked when GPS status changed.
  <p>
  </p></div>
 <dl><dt><span class="strong">Parameters:</span></dt><dd><code>listener</code> - status changed listener.</dd></dl>
 </li>
 </ul>
-<a name="setProviderListener(com.enaikoon.android.gps.core.interfaces.GPSProvider)">
+<a name="setProviderListener(com.ginstr.android.gps.core.interfaces.GPSProvider)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setProviderListener</h4>
-<pre>public&nbsp;void&nbsp;setProviderListener(<a href="../../../../../com/enaikoon/android/gps/core/interfaces/GPSProvider.html" title="interface in com.enaikoon.android.gps.core.interfaces">GPSProvider</a>&nbsp;listener)</pre>
+<pre>public&nbsp;void&nbsp;setProviderListener(<a href="../../../../../com/ginstr/android/gps/core/interfaces/GPSProvider.html" title="interface in com.ginstr.android.gps.core.interfaces">GPSProvider</a>&nbsp;listener)</pre>
 <div class="block">Register a callback to be invoked when GPS provider is changed.
  <p>
  </p></div>
@@ -569,7 +569,7 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
 <div class="block">It will start requesting for GPS location updates.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code>onServiceStart</code>&nbsp;in class&nbsp;<code>com.enaikoon.android.service.baseservice.BaseService</code></dd>
+<dd><code>onServiceStart</code>&nbsp;in class&nbsp;<code>com.ginstr.android.service.baseservice.BaseService</code></dd>
 </dl>
 </li>
 </ul>
@@ -583,7 +583,7 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
 <div class="block">Stops requesting for GPS location updates.</div>
 <dl>
 <dt><strong>Specified by:</strong></dt>
-<dd><code>onServiceStop</code>&nbsp;in class&nbsp;<code>com.enaikoon.android.service.baseservice.BaseService</code></dd>
+<dd><code>onServiceStop</code>&nbsp;in class&nbsp;<code>com.ginstr.android.service.baseservice.BaseService</code></dd>
 </dl>
 </li>
 </ul>
@@ -617,7 +617,7 @@ extends com.enaikoon.android.service.baseservice.BaseService</pre>
 <li>Next Class</li>
 </ul>
 <ul class="navList">
-<li><a href="../../../../../index.html?com/enaikoon/android/gps/core/GPSService.html" target="_top">Frames</a></li>
+<li><a href="../../../../../index.html?com/ginstr/android/gps/core/GPSService.html" target="_top">Frames</a></li>
 <li><a href="GPSService.html" target="_top">No Frames</a></li>
 </ul>
 <ul class="navList" id="allclasses_navbar_bottom">

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.enaikoon.android.service.opencellid"
+    package="com.ginstr.android.service.opencellid"
     android:versionCode="1"
     android:versionName="1.0" >
     
@@ -14,17 +14,17 @@
         android:minSdkVersion="7"
         android:targetSdkVersion="18" />
 
-    <application android:name="com.enaikoon.android.service.opencellid.upload.data.OpenCellIdLibContext" >
-        <service android:name="com.enaikoon.android.service.opencellid.upload.data.MeasurementsUploaderService" />
-   		<service android:name="com.enaikoon.android.service.opencellid.collect.data.CellIDCollectionService" android:exported="true" android:enabled="true">
+    <application android:name="com.ginstr.android.service.opencellid.upload.data.OpenCellIdLibContext" >
+        <service android:name="com.ginstr.android.service.opencellid.upload.data.MeasurementsUploaderService" />
+   		<service android:name="com.ginstr.android.service.opencellid.collect.data.CellIDCollectionService" android:exported="true" android:enabled="true">
    			<intent-filter>
-                <action android:name="com.enaikoon.android.service.opencellid.data.action.START_COLLECTING" />
-                <action android:name="com.enaikoon.android.service.opencellid.data.action.STOP_COLLECTING" />
+                <action android:name="com.ginstr.android.service.opencellid.data.action.START_COLLECTING" />
+                <action android:name="com.ginstr.android.service.opencellid.data.action.STOP_COLLECTING" />
             </intent-filter>
    		</service>
-		<service android:name="com.enaikoon.android.service.opencellid.download.CellsDownloadService"/>
-		<service android:name="com.enaikoon.android.service.opencellid.upload.data.MeasurementsUploaderService" />
-		<service android:name="com.enaikoon.android.service.opencellid.download.CellsDownloadService"/>
+		<service android:name="com.ginstr.android.service.opencellid.download.CellsDownloadService"/>
+		<service android:name="com.ginstr.android.service.opencellid.upload.data.MeasurementsUploaderService" />
+		<service android:name="com.ginstr.android.service.opencellid.download.CellsDownloadService"/>
     </application>
 
 </manifest>
