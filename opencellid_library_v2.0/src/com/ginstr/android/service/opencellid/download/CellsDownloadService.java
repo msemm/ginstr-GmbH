@@ -25,9 +25,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.ginstr.android.service.opencellid.collect.data.ConfigurationConstants;
 import com.ginstr.android.service.opencellid.library.data.ApiKeyHandler;
 import com.ginstr.android.service.opencellid.library.data.Importer;
 import com.ginstr.android.service.opencellid.library.db.OpenCellIdLibContext;
@@ -72,6 +74,8 @@ public class CellsDownloadService extends Service {
 	private String downloadUrl = DownloadConstants.DOWNLOAD_URL_DEFAULT;
 	private String apiKey = "";
 	private boolean testEnvironment = false;
+	private int maxLogFileSize = DownloadConstants.MAX_LOG_SIZE_DEFAULT;
+	private boolean logToFileEnabled=DownloadConstants.LOG_TO_FILE_DEFAULT;
 	
 	private OpenCellIdLibContext libContext;
 	
@@ -206,42 +210,16 @@ public class CellsDownloadService extends Service {
 		
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			logDebug("Received configuration ");
-			if (intent != null && intent.getAction() != null) {
-				if (intent.getAction().equals(DownloadConstants.DOWNLOAD_SETTTINGS_RECEIVER_ACTION)) {
-					
-					if (intent.hasExtra(DownloadConstants.PREF_CELLS_DATABASE_SIZE_KEY)) {
-						cellsDbSize = intent.getIntExtra(DownloadConstants.PREF_CELLS_DATABASE_SIZE_KEY, 
-														 DownloadConstants.CELLS_DATABASE_SIZE_DEFAULT);
-					}
-					
-					if (intent.hasExtra(DownloadConstants.PREF_MIN_FREE_SPACE_KEY)) {
-						minFreeSpace = intent.getIntExtra(DownloadConstants.PREF_MIN_FREE_SPACE_KEY, 
-														  DownloadConstants.MIN_FREE_SPACE_DEFAULT);
-					}
-					
-					if (intent.hasExtra(DownloadConstants.PREF_NEW_DATA_CHECK_INTERVAL_KEY)) {
-						sleepTime = intent.getLongExtra(DownloadConstants.PREF_NEW_DATA_CHECK_INTERVAL_KEY, 
-														DownloadConstants.NEW_DATA_CHECK_INTERVAL_DEFAULT);
-					}
-					
-					if (intent.hasExtra(DownloadConstants.PREF_DOWNLOAD_URL_KEY)) {
-						downloadUrl = intent.getStringExtra(DownloadConstants.PREF_DOWNLOAD_URL_KEY);
-					}
-					
-					if (intent.hasExtra(DownloadConstants.PREF_API_KEY_KEY)) {
-						apiKey = intent.getStringExtra(DownloadConstants.PREF_API_KEY_KEY);
-					}
-					
-					testEnvironment = intent.getBooleanExtra(DownloadConstants.PREF_TEST_ENVIRONMENT_KEY, DownloadConstants.PREF_TEST_ENVIRONMENT);	
-				}
-			}
+			Bundle extras = intent.getExtras();
+			getExtraParameters(extras);
 		}
 	};
 	
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		
+		android.os.Debug.waitForDebugger();
 		
 		libContext = new OpenCellIdLibContext(this);
 		
@@ -299,4 +277,57 @@ public class CellsDownloadService extends Service {
 	public IBinder onBind(Intent intent) {
 		return null;
 	}
+	
+	/**
+	 * reads the parameters from the received Intent object
+	 * @param extras
+	 */
+	private void getExtraParameters(Bundle extras)
+	{
+		if (extras != null)
+		{
+			logDebug("configurationReceiver.onReceive() extras : " + extras.keySet());
+
+			if (extras.containsKey(DownloadConstants.PREF_CELLS_DATABASE_SIZE_KEY)) {
+				cellsDbSize = extras.getInt(DownloadConstants.PREF_CELLS_DATABASE_SIZE_KEY, 
+												 DownloadConstants.CELLS_DATABASE_SIZE_DEFAULT);
+			}
+			
+			if (extras.containsKey(DownloadConstants.PREF_MIN_FREE_SPACE_KEY)) {
+				minFreeSpace = extras.getInt(DownloadConstants.PREF_MIN_FREE_SPACE_KEY, 
+												  DownloadConstants.MIN_FREE_SPACE_DEFAULT);
+			}
+			
+			if (extras.containsKey(DownloadConstants.PREF_NEW_DATA_CHECK_INTERVAL_KEY)) {
+				sleepTime = extras.getLong(DownloadConstants.PREF_NEW_DATA_CHECK_INTERVAL_KEY, 
+												DownloadConstants.NEW_DATA_CHECK_INTERVAL_DEFAULT);
+			}
+			
+			if (extras.containsKey(DownloadConstants.PREF_DOWNLOAD_URL_KEY)) {
+				downloadUrl = extras.getString(DownloadConstants.PREF_DOWNLOAD_URL_KEY);
+			}
+			
+			if (extras.containsKey(DownloadConstants.PREF_API_KEY_KEY)) {
+				apiKey = extras.getString(DownloadConstants.PREF_API_KEY_KEY);
+			}
+			
+			testEnvironment = extras.getBoolean(DownloadConstants.PREF_TEST_ENVIRONMENT_KEY, DownloadConstants.PREF_TEST_ENVIRONMENT);	
+			
+			// check if the maxLogFileSize parameter is provided through intent			
+			if (extras.containsKey(DownloadConstants.PREFKEY_MAX_LOG_SIZE_INT))
+			{
+				maxLogFileSize = extras.getInt(DownloadConstants.PREFKEY_MAX_LOG_SIZE_INT);
+				
+				libContext.getLogService().setMaxLogFileSize(maxLogFileSize);
+			}
+			
+			// check if the logToFileEnabled parameter is provided through intent			
+			if (extras.containsKey(DownloadConstants.PREFKEY_LOG_TO_FILE))
+			{
+				logToFileEnabled = extras.getBoolean(DownloadConstants.PREFKEY_LOG_TO_FILE);
+				
+				libContext.getLogService().setFileLoggingEnabled(logToFileEnabled);
+			}			
+		}
+	}	
 }

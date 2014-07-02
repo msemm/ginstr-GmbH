@@ -37,7 +37,7 @@ public class OpenCellIdLibContext {
 	public static final String LOG_FILENAME_PREFIX = "opencellidlibrary";
 	
 	public static final String SERVER_URL="http://opencellid.org";
-	public static final String SERVER_URL_TEST="http://test-ocid.ginstr.de";
+	public static final String SERVER_URL_TEST="http://test-ocid.enaikoon.de";
 	
 	private Context mContext;
 
@@ -61,7 +61,7 @@ public class OpenCellIdLibContext {
 		
 		log = new LogService(context);
 		log.setAndroidLoggingEnabled(true);
-		log.setFileLoggingEnabled(true);
+		log.setFileLoggingEnabled(false);
 		log.setLogDirectory(new File(OpenCellIdLibContext.getApplicationDirectoryName()));
 		log.setLogTag(LOG_FILENAME_PREFIX);
 		log.startService();

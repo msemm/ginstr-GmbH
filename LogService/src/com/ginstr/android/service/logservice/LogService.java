@@ -16,11 +16,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.ginstr.android.service.baseservice.BaseService;
 
 /**
@@ -66,6 +68,14 @@ public class LogService extends BaseService {
 	
 	// to format date/time in log file
 	private SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd HH:mm:ss.SSS");
+	
+	// log file name suffix - 1/2
+	private int logFileIterator=1;
+	
+	private boolean logFileNameFirstCheck=true;
+	
+	// maximum log size
+	private int logMaxSize=10;
 
 	/**
 	 * Creates a LogService.
@@ -160,7 +170,9 @@ public class LogService extends BaseService {
      * @param tr Throwable object to extract stack trace
      */
     private void writeLogToFile(int type, String tag, String msg, Throwable tw){
-		File logFile = getCurrentLogFile();
+    	checkLogFileSize(logFileNameFirstCheck);
+    	
+    	File logFile = getCurrentLogFile();
 		
 		if (logFile!=null) {
 			
@@ -243,7 +255,7 @@ public class LogService extends BaseService {
 	private File getCurrentLogFile(){
 		File logFile=null;
 		if (logDirectory!=null && baseLogFilename!=null && baseLogFilename!="") {
-			logFile = new File(logDirectory, baseLogFilename+".log");
+			logFile = new File(logDirectory, baseLogFilename + logFileIterator + ".log");
 		}
 		return logFile;
 	}
@@ -316,6 +328,81 @@ public class LogService extends BaseService {
 	public void setAndroidLoggingEnabled(boolean flag) {
 		this.androidLoggingEnabled = flag;
 	}
+	
+	/**
+	 * Checks the log file size and if it is greater than 1/2 of the max size, thew 2nd file is created.
+	 * When the 2nd file reach 1/2 of the max size, the 1st file will be deleted and the log will written to the empty 1st file.
+	 * @param firstTime - check is running for the first time
+	 */
+	private void checkLogFileSize(boolean firstTime)
+	{
+		try
+		{
+			File fTMP = new File(logDirectory, baseLogFilename + logFileIterator + ".log");
+			if (fTMP.exists())
+			{
+				long size = fTMP.length();
 
+				if (size >= (logMaxSize * 1E6 / 2))
+				{
+					if (logFileIterator == 1)
+					{
+						if (firstTime)
+						{
+							logFileIterator = 2;
+
+							checkLogFileSize(firstTime);
+						} else
+						{
+							logFileIterator = 2;
+							
+							deleteLogFile();
+						}
+					} else if (logFileIterator == 2)
+					{
+						logFileIterator = 1;
+						
+						deleteLogFile();
+					}
+				}
+			}
+
+			fTMP = null;
+
+			logFileNameFirstCheck = false;
+		} catch (Exception ex)
+		{
+			Log.e(SERVICE_CODE, ex.getMessage(), ex);
+		}
+	}	
+
+	/**
+	 * defines the maximum log file size in MB
+	 * @param size log file size in MB
+	 */
+	public void setMaxLogFileSize(int size)
+	{
+		logMaxSize=size;
+	}
+	
+	/**
+	 * returns the maximum log file size value
+	 * @return maximum log file size value
+	 */
+	public int getMaxLogFileSize()
+	{
+		return logMaxSize;
+	}	
+	
+	private void deleteLogFile()
+	{
+		File deletOldFile = new File(logDirectory, baseLogFilename + ".log");
+		deletOldFile.delete();
+		deletOldFile = null;		
+		
+		File deletedFile = new File(logDirectory, baseLogFilename + logFileIterator + ".log");
+		deletedFile.delete();
+		deletedFile = null;		
+	}
 
 }

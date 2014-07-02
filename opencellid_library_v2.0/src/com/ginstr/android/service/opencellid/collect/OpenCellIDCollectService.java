@@ -117,6 +117,9 @@ public class OpenCellIDCollectService extends BaseService {
 	boolean gpsPassiveMode=ConfigurationConstants.GPS_PASSIVE_MODE_DEFAULT;
 	boolean foregroundServiceMode=ConfigurationConstants.FOREGROUND_SERVICE_MODE_DEFAULT;
 	
+	int maxLogFileSize = ConfigurationConstants.MAX_LOG_SIZE_DEFAULT;
+	boolean logToFileEnabled=ConfigurationConstants.LOG_TO_FILE_DEFAULT;
+	
 	/**
 	 * Constructor.
 	 * @param context A valid Context object, best would be application context.
@@ -147,6 +150,8 @@ public class OpenCellIDCollectService extends BaseService {
 			serviceIntent.putExtra(ConfigurationConstants.PREFKEY_COLLECT_NETWORKS, collectNetworks);
 			serviceIntent.putExtra(ConfigurationConstants.PREFKEY_GPS_PASSIVE_MODE, gpsPassiveMode);
 			serviceIntent.putExtra(ConfigurationConstants.PREFKEY_FOREGROUND_SERVICE_MODE, foregroundServiceMode);
+			serviceIntent.putExtra(ConfigurationConstants.PREFKEY_MAX_LOG_SIZE_INT, maxLogFileSize);
+			serviceIntent.putExtra(ConfigurationConstants.PREFKEY_LOG_TO_FILE, logToFileEnabled);
 			
 			// start collect service
 			getContext().startService(serviceIntent);
@@ -377,4 +382,28 @@ public class OpenCellIDCollectService extends BaseService {
 		cfg.putExtra(ConfigurationConstants.PREFKEY_FOREGROUND_SERVICE_MODE, foregroundServiceMode);
 		getContext().sendBroadcast(cfg);		
 	}
+	
+	/**
+	 * Sets the log file size in megabytes
+	 * @param size in Mb
+	 */
+	public void setLogFileSize(int size) {
+		maxLogFileSize=size;
+		
+		Intent cfg = new Intent(ConfigurationConstants.GLOBAL_SETTTINGS_RECEIVER_ACTION);
+		cfg.putExtra(ConfigurationConstants.PREFKEY_MAX_LOG_SIZE_INT, size);
+		getContext().sendBroadcast(cfg);
+	}	
+	
+	/**
+	 * Defines if the log to file feature is enabled
+	 * @param flag true to enable log to file
+	 */
+	public void setLogToFileEnabled(boolean flag) {
+		logToFileEnabled=flag;
+		
+		Intent cfg = new Intent(ConfigurationConstants.GLOBAL_SETTTINGS_RECEIVER_ACTION);
+		cfg.putExtra(ConfigurationConstants.PREFKEY_LOG_TO_FILE, flag);
+		getContext().sendBroadcast(cfg);
+	}	
 }

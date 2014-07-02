@@ -143,6 +143,8 @@ public class OpenCellIDUploadService extends BaseService
 	long newDataCheckInterval = UploadConstants.NEW_DATA_CHECK_INTERVAL_LONG_DEFAULT;
 	boolean wifiOnlyUpload = UploadConstants.PREF_ONLY_WIFI_UPLOAD_DEFAULT;
 	boolean testEnvironment = UploadConstants.PREF_TEST_ENVIRONMENT;
+	int maxLogFileSize = UploadConstants.MAX_LOG_SIZE_DEFAULT;
+	boolean logToFileEnabled=UploadConstants.LOG_TO_FILE_DEFAULT;
 
 	/**
 	 * OpenCellIDUploadService constructor
@@ -181,6 +183,8 @@ public class OpenCellIDUploadService extends BaseService
 			serviceIntent.putExtra(UploadConstants.PREF_ONLY_WIFI_UPLOAD_KEY, wifiOnlyUpload);
 			serviceIntent.putExtra(UploadConstants.PREF_OPENCELL_NETWORK_UPLOAD_URL_KEY, networksUploadUrl);
 			serviceIntent.putExtra(UploadConstants.PREF_TEST_ENVIRONMENT_KEY, testEnvironment);
+			serviceIntent.putExtra(UploadConstants.PREFKEY_MAX_LOG_SIZE_INT, maxLogFileSize);
+			serviceIntent.putExtra(UploadConstants.PREFKEY_LOG_TO_FILE, logToFileEnabled);
 
 			//start upload service
 			getContext().startService(serviceIntent);
@@ -343,4 +347,28 @@ public class OpenCellIDUploadService extends BaseService
 			return -1;
 		}
 	}
+	
+	/**
+	 * Sets the log file size in megabytes
+	 * @param size in Mb
+	 */
+	public void setLogFileSize(int size) {
+		maxLogFileSize=size;
+		
+		Intent cfg = new Intent(UploadConstants.CONFIGURATION_ACTION);
+		cfg.putExtra(UploadConstants.PREFKEY_MAX_LOG_SIZE_INT, size);
+		getContext().sendBroadcast(cfg);
+	}	
+	
+	/**
+	 * Defines if the log to file feature is enabled
+	 * @param flag true to enable log to file
+	 */
+	public void setLogToFileEnabled(boolean flag) {
+		logToFileEnabled=flag;
+		
+		Intent cfg = new Intent(UploadConstants.CONFIGURATION_ACTION);
+		cfg.putExtra(UploadConstants.PREFKEY_LOG_TO_FILE, flag);
+		getContext().sendBroadcast(cfg);
+	}		
 }

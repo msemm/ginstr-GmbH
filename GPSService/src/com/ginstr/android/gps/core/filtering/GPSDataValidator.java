@@ -12,13 +12,12 @@
  */
 package com.ginstr.android.gps.core.filtering;
 
-
 import android.content.Context;
 import android.location.Location;
 import android.util.Log;
 
-import com.ginstr.android.gps.core.filtering.GPSReport.ErrorReason;
 import com.ginstr.android.service.logservice.LogService;
+import com.ginstr.android.gps.core.filtering.GPSReport.ErrorReason;
 
 /**
  * GPSDataValidator checks the validity of a GPS signal both internally 

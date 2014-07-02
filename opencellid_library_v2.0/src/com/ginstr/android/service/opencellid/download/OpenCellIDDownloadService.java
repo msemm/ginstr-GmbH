@@ -66,6 +66,15 @@ import com.ginstr.android.service.baseservice.BaseService;
 public class OpenCellIDDownloadService extends BaseService {
 	private Intent serviceIntent;
 	
+	int dbSize = DownloadConstants.CELLS_DATABASE_SIZE_DEFAULT;
+	int minFreeSpaceLeft = DownloadConstants.MIN_FREE_SPACE_DEFAULT;
+	long dataCheckInterval = DownloadConstants.NEW_DATA_CHECK_INTERVAL_DEFAULT;
+	String downloadUrl = DownloadConstants.DOWNLOAD_URL_DEFAULT;
+	String apiKey=null;
+	boolean testEnvironment=DownloadConstants.PREF_TEST_ENVIRONMENT;
+	int maxLogFileSize = DownloadConstants.MAX_LOG_SIZE_DEFAULT;
+	boolean logToFileEnabled=DownloadConstants.LOG_TO_FILE_DEFAULT;
+	
 	/**
 	 * Construct a service with predefined defaults.
 	 * Settings from DownloadConstants file will be used.
@@ -76,30 +85,23 @@ public class OpenCellIDDownloadService extends BaseService {
 		super(context, "OPENCELLID_DOWNLOAD");
 		serviceIntent = new Intent(getContext(), CellsDownloadService.class);
 	}
-	
-	/**
-	 * Construct a service with a bundle of configuration parameters.
-	 * These parameters will be passed to the service before it starts.
-	 * 
-	 * @param context
-	 * @param bundle any keys from DownloadConstants
-	 */
-	public OpenCellIDDownloadService(Context context, Bundle bundle) {
-		super(context, "OPENCELLID_DOWNLOAD");
-		
-		serviceIntent = new Intent(getContext(), CellsDownloadService.class);
-		serviceIntent.setAction(DownloadConstants.DOWNLOAD_SETTTINGS_RECEIVER_ACTION);
-		if (bundle != null && !bundle.isEmpty()) {
-			serviceIntent.putExtras(bundle);
-		}
-	}
 
 	@Override
 	public void onServiceStart() {
-		if (isStarted())
-			return;
-		
-		getContext().startService(serviceIntent);
+		if (!isStarted()) {
+			//define parameters for cell collect service
+			serviceIntent.putExtra(DownloadConstants.PREF_CELLS_DATABASE_SIZE_KEY, dbSize);
+			serviceIntent.putExtra(DownloadConstants.PREF_MIN_FREE_SPACE_KEY, minFreeSpaceLeft);
+			serviceIntent.putExtra(DownloadConstants.PREF_NEW_DATA_CHECK_INTERVAL_KEY, dataCheckInterval);
+			serviceIntent.putExtra(DownloadConstants.PREF_DOWNLOAD_URL_KEY, downloadUrl);
+			serviceIntent.putExtra(DownloadConstants.PREF_API_KEY_KEY, apiKey);
+			serviceIntent.putExtra(DownloadConstants.PREF_TEST_ENVIRONMENT_KEY, testEnvironment);
+			serviceIntent.putExtra(DownloadConstants.PREFKEY_MAX_LOG_SIZE_INT, maxLogFileSize);
+			serviceIntent.putExtra(DownloadConstants.PREFKEY_LOG_TO_FILE, logToFileEnabled);
+			
+			// start collect service
+			getContext().startService(serviceIntent);
+		}
 	}
 
 	@Override
@@ -130,6 +132,8 @@ public class OpenCellIDDownloadService extends BaseService {
 	 * @param size in Mb
 	 */
 	public void setMaxCellsDatabaseSize(int size) {
+		dbSize=size;
+		
 		Intent i = new Intent(DownloadConstants.DOWNLOAD_SETTTINGS_RECEIVER_ACTION);
 		i.putExtra(DownloadConstants.PREF_CELLS_DATABASE_SIZE_KEY, size);
 		getContext().sendBroadcast(i);
@@ -142,6 +146,8 @@ public class OpenCellIDDownloadService extends BaseService {
 	 * @param freeSpace in Mb
 	 */
 	public void setMinFreeSpace(int freeSpace) {
+		minFreeSpaceLeft = freeSpace;
+		
 		Intent i = new Intent(DownloadConstants.DOWNLOAD_SETTTINGS_RECEIVER_ACTION);
 		i.putExtra(DownloadConstants.PREF_MIN_FREE_SPACE_KEY, freeSpace);
 		getContext().sendBroadcast(i);
@@ -154,6 +160,8 @@ public class OpenCellIDDownloadService extends BaseService {
 	 * @param interval in milliseconds
 	 */
 	public void setServerUpdateTime(long interval) {
+		dataCheckInterval=interval;
+		
 		Intent i = new Intent(DownloadConstants.DOWNLOAD_SETTTINGS_RECEIVER_ACTION);
 		i.putExtra(DownloadConstants.PREF_NEW_DATA_CHECK_INTERVAL_KEY, interval);
 		getContext().sendBroadcast(i);
@@ -183,6 +191,8 @@ public class OpenCellIDDownloadService extends BaseService {
 	 * @param url Must not be null and should be valid
 	 */
 	public void setDownloadUrl(String url) {
+		downloadUrl=url;
+		
 		Intent i = new Intent(DownloadConstants.DOWNLOAD_SETTTINGS_RECEIVER_ACTION);
 		i.putExtra(DownloadConstants.PREF_DOWNLOAD_URL_KEY, url);
 		getContext().sendBroadcast(i);
@@ -195,8 +205,34 @@ public class OpenCellIDDownloadService extends BaseService {
 	 * @param apiKey
 	 */
 	public void setApiKey(String apiKey) {
+		this.apiKey=apiKey;
+		
 		Intent i = new Intent(DownloadConstants.DOWNLOAD_SETTTINGS_RECEIVER_ACTION);
 		i.putExtra(DownloadConstants.PREF_API_KEY_KEY, apiKey);
 		getContext().sendBroadcast(i);
 	}
+	
+	/**
+	 * Sets the log file size in megabytes
+	 * @param size in Mb
+	 */
+	public void setLogFileSize(int size) {
+		maxLogFileSize=size;
+		
+		Intent cfg = new Intent(DownloadConstants.DOWNLOAD_SETTTINGS_RECEIVER_ACTION);
+		cfg.putExtra(DownloadConstants.PREFKEY_MAX_LOG_SIZE_INT, size);
+		getContext().sendBroadcast(cfg);
+	}	
+	
+	/**
+	 * Defines if the log to file feature is enabled
+	 * @param flag true to enable log to file
+	 */
+	public void setLogToFileEnabled(boolean flag) {
+		logToFileEnabled=flag;
+		
+		Intent cfg = new Intent(DownloadConstants.DOWNLOAD_SETTTINGS_RECEIVER_ACTION);
+		cfg.putExtra(DownloadConstants.PREFKEY_LOG_TO_FILE, flag);
+		getContext().sendBroadcast(cfg);
+	}		
 }

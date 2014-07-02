@@ -26,13 +26,13 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Build;
 
+import com.ginstr.android.service.baseservice.BaseService;
 import com.ginstr.android.gps.core.filtering.GPSDataValidator;
 import com.ginstr.android.gps.core.filtering.GPSReport;
 import com.ginstr.android.gps.core.interfaces.GPSProvider;
 import com.ginstr.android.gps.core.interfaces.GPSStatusChanged;
 import com.ginstr.android.gps.core.interfaces.LocationChanged;
 import com.ginstr.android.gps.core.interfaces.ValidLocationChanged;
-import com.ginstr.android.service.baseservice.BaseService;
 
 /**
  * Provides GPS data and listeners. 

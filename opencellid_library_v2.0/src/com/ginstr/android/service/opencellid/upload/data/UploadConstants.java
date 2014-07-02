@@ -84,12 +84,12 @@ public class UploadConstants {
     /**
      * Test URL for OpenCellId servers.
      */
-    public static final String OPEN_CELL_TEST_UPLOAD_URL = "http://test-ocid.ginstr.de/measure/uploadCsv";   
+    public static final String OPEN_CELL_TEST_UPLOAD_URL = "http://test-ocid.enaikoon.de/measure/uploadCsv";   
     
     /**
      * Test URL for networks on OpenCellId servers.
      */
-    public static final String OPENCELL_NETWORKS_TEST_UPLOAD_URL = "http://test-ocid.ginstr.de/gsmCell/mccmnc/addNetworks"; 
+    public static final String OPENCELL_NETWORKS_TEST_UPLOAD_URL = "http://test-ocid.enaikoon.de/gsmCell/mccmnc/addNetworks"; 
     
     /**
      * Configuration key for reading an application id
@@ -100,4 +100,12 @@ public class UploadConstants {
      * exception message displayed in case when application ID parameter is not valid
      */
 	public static final String CONSTRUCTOR_EXCEPTION_MESSAGE = "appId parameter is not well formed!";    
+	
+    /** Maximum log file size in megabytes */
+    public static final String PREFKEY_MAX_LOG_SIZE_INT = "pref_log_size";
+    public static final int MAX_LOG_SIZE_DEFAULT = 100;
+    
+    /** Key to enable/disable log to file */
+    public static final String PREFKEY_LOG_TO_FILE = "pref_log_to_file";
+    public static final boolean LOG_TO_FILE_DEFAULT = false; 	
 }

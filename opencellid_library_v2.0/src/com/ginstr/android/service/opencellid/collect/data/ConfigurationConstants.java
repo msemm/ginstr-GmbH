@@ -101,5 +101,12 @@ public class ConfigurationConstants {
     /** Key to enable/disable foreground mode */
     public static final String PREFKEY_FOREGROUND_SERVICE_MODE = "pref_foreground_service_mode";
     public static final boolean FOREGROUND_SERVICE_MODE_DEFAULT = true;    
-     
+    
+    /** Maximum log file size in megabytes */
+    public static final String PREFKEY_MAX_LOG_SIZE_INT = "pref_log_size";
+    public static final int MAX_LOG_SIZE_DEFAULT = 100;
+    
+    /** Key to enable/disable log to file */
+    public static final String PREFKEY_LOG_TO_FILE = "pref_log_to_file";
+    public static final boolean LOG_TO_FILE_DEFAULT = false;    
 }

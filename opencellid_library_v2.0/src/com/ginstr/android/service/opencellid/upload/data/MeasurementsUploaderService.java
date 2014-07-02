@@ -73,6 +73,8 @@ public class MeasurementsUploaderService extends Service {
 	private long newDataCheckInterval = UploadConstants.NEW_DATA_CHECK_INTERVAL_LONG_DEFAULT;
 	private boolean wifiOnly = UploadConstants.PREF_ONLY_WIFI_UPLOAD_DEFAULT;
 	private boolean testEnvironment = UploadConstants.PREF_TEST_ENVIRONMENT;
+	private int maxLogFileSize = UploadConstants.MAX_LOG_SIZE_DEFAULT;
+	private boolean logToFileEnabled=UploadConstants.LOG_TO_FILE_DEFAULT;
 	
 	private Thread uploadThread;
 	private static volatile boolean uploadThreadRunning;
@@ -544,6 +546,22 @@ public class MeasurementsUploaderService extends Service {
 				
 				if (extras.containsKey(UploadConstants.PREF_ONLY_WIFI_UPLOAD_KEY))
 					wifiOnly = extras.getBoolean(UploadConstants.PREF_ONLY_WIFI_UPLOAD_KEY);
+				
+				// check if the maxLogFileSize parameter is provided through intent			
+				if (extras.containsKey(UploadConstants.PREFKEY_MAX_LOG_SIZE_INT))
+				{
+					maxLogFileSize = extras.getInt(UploadConstants.PREFKEY_MAX_LOG_SIZE_INT);
+					
+					mLibContext.getLogService().setMaxLogFileSize(maxLogFileSize);
+				}
+				
+				// check if the logToFileEnabled parameter is provided through intent			
+				if (extras.containsKey(UploadConstants.PREFKEY_LOG_TO_FILE))
+				{
+					logToFileEnabled = extras.getBoolean(UploadConstants.PREFKEY_LOG_TO_FILE);
+					
+					mLibContext.getLogService().setFileLoggingEnabled(logToFileEnabled);
+				}					
 			}
 			
 			writeToLog("onConfigurationReceiver ()");

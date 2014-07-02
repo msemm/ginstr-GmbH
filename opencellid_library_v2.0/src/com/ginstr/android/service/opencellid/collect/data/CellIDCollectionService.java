@@ -249,6 +249,9 @@ public class CellIDCollectionService extends Service
 	private long dimThreadSleepTime = ConfigurationConstants.DIM_SCREEN_THREAD_SLEEP_TIME;
 	private boolean gpsPassiveModeEnabled = ConfigurationConstants.GPS_PASSIVE_MODE_DEFAULT;
 	private boolean foregroundServiceModeEnabled = ConfigurationConstants.FOREGROUND_SERVICE_MODE_DEFAULT;
+	
+	private int maxLogFileSize = ConfigurationConstants.MAX_LOG_SIZE_DEFAULT;
+	private boolean logToFileEnabled=ConfigurationConstants.LOG_TO_FILE_DEFAULT;
 
 	private void logDebug(String message, Throwable t)
 	{
@@ -1376,6 +1379,22 @@ public class CellIDCollectionService extends Service
 			{
 				gpsPassiveModeEnabled = extras.getBoolean(ConfigurationConstants.PREFKEY_GPS_PASSIVE_MODE);
 			}
+					
+			// check if the maxLogFileSize parameter is provided through intent			
+			if (extras.containsKey(ConfigurationConstants.PREFKEY_MAX_LOG_SIZE_INT))
+			{
+				maxLogFileSize = extras.getInt(ConfigurationConstants.PREFKEY_MAX_LOG_SIZE_INT);
+				
+				libContext.getLogService().setMaxLogFileSize(maxLogFileSize);
+			}
+			
+			// check if the logToFileEnabled parameter is provided through intent			
+			if (extras.containsKey(ConfigurationConstants.PREFKEY_LOG_TO_FILE))
+			{
+				logToFileEnabled = extras.getBoolean(ConfigurationConstants.PREFKEY_LOG_TO_FILE);
+				
+				libContext.getLogService().setFileLoggingEnabled(logToFileEnabled);
+			}			
 		}
 	}
 
