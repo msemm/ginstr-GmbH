@@ -23,10 +23,9 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.ginstr.android.service.opencellid.library.db.OpenCellIdLibContext;
-
-import android.os.Environment;
 import android.util.Log;
+
+import com.ginstr.android.service.opencellid.library.db.OpenCellIdLibContext;
 
 /**
  * Use this class to read a random generated API key from
@@ -172,8 +171,20 @@ public class ApiKeyHandler {
     public static String getApiKey()
     {
 		String apiKey = ApiKeyHandler.getKeyFromFile(false);
+		
+		//fix for old users
+		if (apiKey!=null && apiKey.contains(" "))
+		{
+			apiKey=null;
+		}
+		
 		if (apiKey == null) {
 			apiKey = ApiKeyHandler.requestNewKey(false);
+		}
+		
+		if (apiKey!=null && apiKey.contains(" "))
+		{
+			apiKey=null;
 		}
 		
 		return apiKey;
